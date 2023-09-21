@@ -23,6 +23,7 @@ import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
+import com.example.gmailclone.components.GmailDrawerMenu
 import com.example.gmailclone.components.HomeAppBar
 import com.example.gmailclone.ui.theme.GmailCloneTheme
 import kotlinx.coroutines.CoroutineScope
@@ -52,7 +53,9 @@ fun GmailApp() {
     ModalNavigationDrawer(
         drawerState = drawerState,
         drawerContent = {
-            ModalDrawerSheet { /* Drawer content */ }
+            ModalDrawerSheet {
+                GmailDrawerMenu()
+            }
         },
     ) {
         Scaffold(
@@ -62,7 +65,6 @@ fun GmailApp() {
                     modifier = Modifier
                         .padding(paddingValues)
                 )
-
             },
             containerColor = Color.White
         )

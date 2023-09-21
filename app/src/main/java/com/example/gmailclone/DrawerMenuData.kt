@@ -89,4 +89,15 @@ sealed class DrawerMenuData(
         icon = Icons.Outlined.Help,
         title = "Help"
     )
+    object Divider: DrawerMenuData(
+        isDivider = true
+    )
+    object HeaderOne: DrawerMenuData(
+        isHeader = true,
+        title = "All Labels"
+    )
+    object HeaderTwo: DrawerMenuData(
+        isHeader = true,
+        title = "GOOGLE APPS"
+    )
 }
