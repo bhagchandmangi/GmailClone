@@ -94,7 +94,7 @@ sealed class DrawerMenuData(
     )
     object HeaderOne: DrawerMenuData(
         isHeader = true,
-        title = "All Labels"
+        title = "ALL LABELS"
     )
     object HeaderTwo: DrawerMenuData(
         isHeader = true,

@@ -1,11 +1,14 @@
 package com.example.gmailclone.components
 
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.ScrollState
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.verticalScroll
+import androidx.compose.material3.Divider
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
@@ -16,14 +19,15 @@ import androidx.compose.ui.unit.sp
 import com.example.gmailclone.DrawerMenuData
 
 @Composable
-fun GmailDrawerMenu() {
+fun GmailDrawerMenu(scrollState: ScrollState) {
     val menuList = listOf(
-//        DrawerMenuData.Divider,
+        DrawerMenuData.Divider,
         DrawerMenuData.AllInbox,
-//        DrawerMenuData.Divider,
+        DrawerMenuData.Divider,
         DrawerMenuData.Primary,
         DrawerMenuData.Social,
         DrawerMenuData.Promotions,
+        DrawerMenuData.HeaderOne,
         DrawerMenuData.Starred,
         DrawerMenuData.Snoozed,
         DrawerMenuData.Important,
@@ -32,25 +36,44 @@ fun GmailDrawerMenu() {
         DrawerMenuData.Outbox,
         DrawerMenuData.Drafts,
         DrawerMenuData.AllMail,
+        DrawerMenuData.HeaderTwo,
         DrawerMenuData.Calendar,
         DrawerMenuData.Contacts,
-//        DrawerMenuData.Divider,
+        DrawerMenuData.Divider,
         DrawerMenuData.Setting,
         DrawerMenuData.Help,
 
         )
-    Column {
+    Column(
+        modifier = Modifier.verticalScroll(scrollState)
+    ) {
         Text(
             text = "Gmail",
             fontSize = 20.sp,
             fontWeight = FontWeight.Bold,
             modifier = Modifier
-                .padding(start = 10.dp, top = 10.dp, bottom = 10.dp),
+                .padding(start = 20.dp, top = 10.dp, bottom = 10.dp),
             color = Color.Red
         )
-        menuList.forEach{
-            item->
-            MailDrawerItem(item = item)
+        menuList.forEach { item ->
+            when {
+                item.isDivider -> {
+                    Divider(
+                        modifier = Modifier.padding(top = 20.dp, bottom = 20.dp)
+                    )
+                }
+
+                item.isHeader -> {
+                    Text(
+                        text = item.title!!, fontWeight = FontWeight.Light,
+                        modifier = Modifier.padding(top = 20.dp, start = 20.dp, bottom = 20.dp)
+                    )
+                }
+
+                else -> {
+                    MailDrawerItem(item = item)
+                }
+            }
         }
     }
 }
