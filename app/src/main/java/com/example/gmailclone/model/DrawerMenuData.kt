@@ -1,4 +1,4 @@
-package com.example.gmailclone
+package com.example.gmailclone.model
 
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.outlined.AllInbox
