@@ -16,11 +16,14 @@ import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Surface
 import androidx.compose.material3.rememberDrawerState
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
 import com.example.gmailclone.components.GmailDrawerMenu
+import com.example.gmailclone.components.GmailFab
 import com.example.gmailclone.components.HomeAppBar
 import com.example.gmailclone.components.HomeBottomMenu
 import com.example.gmailclone.components.MailList
@@ -49,6 +52,10 @@ fun GmailApp() {
     val drawerState = rememberDrawerState(initialValue = DrawerValue.Closed)
     val coroutineScope = rememberCoroutineScope()
     val scrollState = rememberScrollState()
+    val openDialog = remember{
+        mutableStateOf(false
+        )
+    }
     ModalNavigationDrawer(
         drawerState = drawerState,
         drawerContent = {
@@ -58,15 +65,16 @@ fun GmailApp() {
         },
     ) {
         Scaffold(
-            topBar = { HomeAppBar(drawerState = drawerState, coroutineScope) },
+            topBar = { HomeAppBar(drawerState = drawerState, coroutineScope, openDialog) },
             content = { paddingValues ->
                 Box(
                     modifier = Modifier
                         .padding(paddingValues)
                 ){
-                    MailList()
+                    MailList(scrollState)
                 }
             },
+            floatingActionButton = { GmailFab(scrollState) },
             bottomBar = {
                         HomeBottomMenu()
             },

@@ -1,6 +1,9 @@
 package com.example.gmailclone.components
 
+import androidx.compose.foundation.ScrollState
 import androidx.compose.foundation.background
+import androidx.compose.foundation.gestures.Orientation
+import androidx.compose.foundation.gestures.scrollable
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
@@ -29,11 +32,12 @@ import com.example.gmailclone.mailList
 import com.example.gmailclone.model.MailData
 
 @Composable
-fun MailList() {
+fun MailList(scrollState: ScrollState) {
     LazyColumn(
         modifier = Modifier
             .fillMaxSize()
             .padding(16.dp)
+            .scrollable(scrollState, orientation = Orientation.Vertical)
     ) {
         items(
             mailList,
