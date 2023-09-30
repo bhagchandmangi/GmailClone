@@ -1,9 +1,10 @@
 package com.example.gmailclone
 
+import com.example.gmailclone.model.Account
 import com.example.gmailclone.model.MailData
 
 val mailList = listOf(
-     MailData(
+    MailData(
         mailId = 1,
         userName = "Mangi",
         subject = "testing msg from mangi",
@@ -101,4 +102,31 @@ val mailList = listOf(
         body = "I am going to test this app for QA Services",
         timeStamp = "12:30"
     )
+)
+val accountList = listOf<Account>(
+    Account(
+        icon = R.drawable.men,
+        userName = "Mangi",
+        email = "mangi@gmail.com",
+        unReadMails = 90
+    ),
+    Account(
+        icon = R.drawable.person_4,
+        userName = "Mangi",
+        email = "mangi@gmail.com",
+        unReadMails = 80
+    ),
+    Account(
+        icon = null,
+        userName = "Mangi",
+        email = "mangi@gmail.com",
+        unReadMails = 70
+    ),
+    Account(
+        icon = null,
+        userName = "Mangi",
+        email = "mangi@gmail.com",
+        unReadMails = 60
+    ),
+
 )
